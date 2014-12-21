@@ -19,8 +19,14 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'django_parse_push', ['Device'])
 
+        # Adding unique constraint on 'Device', fields ['user', 'device_type', 'device_id']
+        db.create_unique(u'django_parse_push_device', ['user_id', 'device_type', 'device_id'])
+
 
     def backwards(self, orm):
+        # Removing unique constraint on 'Device', fields ['user', 'device_type', 'device_id']
+        db.delete_unique(u'django_parse_push_device', ['user_id', 'device_type', 'device_id'])
+
         # Deleting model 'Device'
         db.delete_table(u'django_parse_push_device')
 
@@ -63,7 +69,7 @@ class Migration(SchemaMigration):
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
         u'django_parse_push.device': {
-            'Meta': {'ordering': "('-created_at',)", 'object_name': 'Device'},
+            'Meta': {'ordering': "('-created_at',)", 'unique_together': "(('user', 'device_type', 'device_id'),)", 'object_name': 'Device'},
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'device_id': ('django.db.models.fields.TextField', [], {}),
             'device_type': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
