@@ -2,7 +2,7 @@
 # coding=utf-8
 
 import os.path
-from distutils.core import setup
+from setuptools import setup
 import django_parse_push
 
 README = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
@@ -29,6 +29,8 @@ setup(
     classifiers=CLASSIFIERS,
     description="Parse push support for django",
     download_url="https://github.com/gkmngrgn/django-parse-push/tarball/master",
+    include_package_data=True,
+    zip_safe=False,
     packages=[
         "django_parse_push",
     ],
