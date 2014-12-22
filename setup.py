@@ -20,7 +20,7 @@ CLASSIFIERS = [
 ]
 
 setup(
-    name="django-push-notifications",
+    name="django-parse-push",
     version=django_parse_push.get_version(),
     url="https://github.com/jleclanche/django-push-notifications",
     author=u"Gökmen Görgen",
