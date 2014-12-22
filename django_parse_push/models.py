@@ -1,10 +1,9 @@
-from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+from django_parse_push.api_client import get_api_client
 from django_parse_push.utils import DeviceType
-
-AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
+from django_parse_push.settings import AUTH_USER_MODEL
 
 
 @python_2_unicode_compatible
@@ -24,3 +23,20 @@ class Device(models.Model):
 
     def __str__(self):
         return self.device_id
+
+    def send_message(self, message, **kwargs):
+        """
+        Please see the Parse documentation for extra optional parameters. `message` is required argument.
+
+        :return: HTTP Response object
+        """
+        kwargs.update({"alert": message})
+        data = {
+            "where": {
+                "deviceType": self.device_type,
+                "deviceToken": self.device_id
+            },
+            "data": kwargs
+        }
+        response = get_api_client().send_notification(data=data)
+        return response
