@@ -8,17 +8,13 @@ import django_parse_push
 README = open(os.path.join(os.path.dirname(__file__), "README.rst")).read()
 
 CLASSIFIERS = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 3 - Alpha",
     "Environment :: Web Environment",
     "Framework :: Django",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 2.6",
     "Programming Language :: Python :: 2.7",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.3",
-    "Programming Language :: Python :: 3.4",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: System :: Networking",
 ]
@@ -29,6 +25,7 @@ setup(
     url="https://github.com/jleclanche/django-push-notifications",
     author=u"Gökmen Görgen",
     author_email="gokmen@alageek.com",
+    license="MIT",
     classifiers=CLASSIFIERS,
     description="Parse push support for django",
     download_url="https://github.com/gkmngrgn/django-parse-push/tarball/master",
