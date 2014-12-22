@@ -35,5 +35,8 @@ setup(
     packages=[
         "django_parse_push",
     ],
-    long_description=README
+    long_description=README,
+    requires=[
+        "requests(>=2.5.0)"
+    ]
 )
